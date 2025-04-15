@@ -1,0 +1,100 @@
+---
+title: "PC-1"
+format: html
+editor: visual
+---
+
+## Mi Primer documento en Quarto
+
+En este documento el grupo conformado por:
+
+-   Danuska Yamile Ascarza Aiquipa
+
+-   Samira Nelida Arango Coronado
+
+-   Aybar Valle Salvador Jesus
+
+-   Sánchez Gutiérrez Aracely Nathaly
+
+Realizaremos el trabajo asignado por el doctor Segundo Vicente Castro Lopez
+
+## Instalación de paquetes y funciones del R:
+
+1.- **filter()** del paquete **dplyr**
+
+esta función sirve para filtrar filas que cumplan una condición, primero instalaremos el paquete donde se encuentra esta función en este caso el paquete **dplyr**
+
+```{r}
+#instalaremos y activaremos el paquete 
+install.packages("dplyr")
+library(dplyr)
+```
+
+aplicaremos la función **filter()** que instalamos del paquete **dplyr**
+
+```{r}
+# Creamos un data frame
+personas <- data.frame(
+  nombre = c("Roxwell", "Luis", "María","Juana","Danuska","Dannely","Sheyla"),
+  edad = c(20, 19, 19, 18, 22, 28, 30 )
+)
+
+# Filtramos las personas mayores de 20 años
+mayores <- filter(personas, edad >= 20)
+print(mayores)
+
+```
+
+2.- **ggplot()** del paquete **ggplot2**
+
+esta función sirve para hacer gráficos personalizados, primero instalaremos el paquete **ggplot2** para poder usar la función **ggplot()**
+
+```{r}
+install.packages("ggplot2")
+library(ggplot2)
+
+```
+
+ahora usaremos la función **ggplot()** con el siguiente ejemplo:
+
+```{r}
+# Creamos datos simples
+ventas <- data.frame(
+  producto = c("Cartucheras", "Lapiz", "Libros"),
+  cantidad = c(10, 15, 7)
+)
+
+# Hacemos un gráfico de barras
+ggplot(ventas, aes(x = producto, y = cantidad)) +
+  geom_bar(stat = "identity")
+
+
+```
+
+3.- **fct_reorder()** del paquete **forcats**
+
+La función **fct_reorder()** sirve para ordenar categorías según otra variable (ventas, edad, etc), para poder usarlo primero instalaremos el paquete **forcats**:
+
+```{r}
+# Instalamos y activamos el paquete
+install.packages("forcats")
+library(forcats)
+library(ggplot2)  # También usamos ggplot2 para graficar
+```
+
+Ahora realizaremos la función usando una data de ejemplo:
+
+```{r}
+# Creamos un data frame de ejemplo
+datos <- data.frame(
+  producto = c("Jabones", "Toallas", "Detergente"),
+  ventas = c(30, 10, 20)
+)
+# Usamos fct_reorder para ordenar los productos por ventas
+datos$producto <- fct_reorder(datos$producto, datos$ventas)
+
+# Graficamos para ver el orden
+ggplot(datos, aes(x = producto, y = ventas)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Ventas ordenadas por cantidad")
+```
